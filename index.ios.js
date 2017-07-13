@@ -5,43 +5,54 @@
  */
 
 import React, { Component } from 'react';
+var Dimensions = require('Dimensions');
+import first from './src/firstview'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ScrollView,
+  Navigator
 } from 'react-native';
 
+
 export default class rn_pro extends Component {
+  constructor(props) {
+        super(props);
+        this.state = {
+            name: 'tom'
+        }
+    }
+  configureScene(route) {
+    if (route.type == 'Bottom') {
+      return Navigator.SceneConfigs.FloatFromBottom;
+    }
+    return Navigator.SceneConfigs.PushFromRight;
+  }
+  renderScene(route, navigator){ 
+    return <route.component  {...route.params}  navigator={navigator}/>
+  }
   render() {
+    console.warn(this.state.name)
     return (
-      <View style={styles.container}>
-        <Image
-          style={{width: 350,height:200}}
-          source={require('./static/file.jpg')}
-        />
-        <Text style={styles.welcome}>
-         native test!!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+          <Navigator style={{flex:1}}  initialRoute={{component: first}} configureScene={this.configureScene}
+        renderScene={this.renderScene}/>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'flex-start',
+    backgroundColor: '#eee',
+    padding:0,
+    paddingTop:20,
+  },
+  scroll:{
+    position:'relative',
+    height:Dimensions.get('window').height
   },
   welcome: {
     fontSize: 20,
@@ -52,7 +63,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+    color:'red'
   },
+  img:{
+    // alignSelf:'stretch'
+    width:Dimensions.get('window').width,
+    height:200
+  },
+  footer:{
+    position:'absolute',
+    bottom:0,
+    flexDirection:'row',
+    justifyContent:'space-around',
+    marginTop:10,
+    paddingBottom:5,
+    paddingTop:5,
+    backgroundColor:'#eee'
+  },
+  footeritem:{
+    flexDirection:"column",
+    alignItems:'center',
+    flexGrow:1
+  },
+  footerIcon:{
+    width:20,
+    height:20,
+    marginBottom:5
+  }
 });
 
 AppRegistry.registerComponent('rn_pro', () => rn_pro);
