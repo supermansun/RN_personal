@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Text} from 'react-native'
 
-export default class notice extends Component{
+export default class person extends React.Component{
 	constructor(props) {
         super(props);
         this.state = {
@@ -10,15 +10,7 @@ export default class notice extends Component{
     }
     render(){
     	return (
-    			<Text style={styles.text}>这里是消息中心</Text>
+    			<Text>这里是个人中心mmmmm</Text>
     		)
     }
-
-}
-const styles = {
-	text:{
-		marginTop:50,
-		fontSize:30,
-		color:'red'
-	}
 }

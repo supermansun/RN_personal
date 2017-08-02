@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 
-export default class first extends Component {
+export default class first extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
@@ -58,7 +58,7 @@ export default class first extends Component {
             />
 
             <Text style={styles.instructions}>
-              To get started, edit index.ios.js??????
+              To get started, edit index.ios.js哈哈哈哈
             </Text>
             
           </View>
