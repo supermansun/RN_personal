@@ -1,8 +1,8 @@
 import * as types from '../types'
-export default function () {
+export  function routerSet (route) {
     return (dispatch) => {
         console.log('invoke common action??????!!!!')
-        dispatch(setRoute('notice'))
+        dispatch(setRoute(route))
     }
 
 }

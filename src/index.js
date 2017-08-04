@@ -41,17 +41,19 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const {common} = state;
+    const {common,home} = state;
+    console.log('mapDispatchToProps:',common)
+    
     return {
-        ...common
+        ...common,
+        ...home
     }
 }
 const mapDispatchToProps = (dispatch) => {
     const actions = bindActionCreators(actionCreator, dispatch)
-    console.log('mapDispatchToProps:',actions.common)
     
     return {
-        actions
+        ...actions
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
